@@ -36,8 +36,9 @@ def find_rect_contour(image, width = 800, ksize=(5,5), min_threshold=60, max_thr
     contour = contour.astype('int')
 
     if debug:
+        from pororo.plt_util import plt_imshow
         cv2.drawContours(image, [contour], -1, (0, 255, 0), 2)
-        cv2.imshow("Paper Edge", image)
+        plt_imshow("Edge", image, (8, 5))
 
     return contour
 
@@ -50,9 +51,6 @@ def find_text_contour(image, position_Y, ksize=(5,5), min_threshold=60, max_thre
 
     # === 텍스트 외곽선 검출
     contours, _ = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    if not contours.Any():
-        return None, None
 
     grab = dict()
     grab["index"], grab["minY"], grab["maxY"] = None, None, None
@@ -73,12 +71,9 @@ def find_text_contour(image, position_Y, ksize=(5,5), min_threshold=60, max_thre
                     grab["maxY"] = max_y
     
     if debug:
+        from pororo.plt_util import plt_imshow
         cv2.drawContours(image, [contours[grab["index"]]], -1, (0, 255, 0), 2)
-        cv2.imshow("Contour", image)
+        plt_imshow("ROI", image, (8, 5))
 
     return grab["minY"], grab["maxY"]
-
-if __name__ == "__main__":
-    image_path = "./assets/2.png"
-    img = cv2.imread(image_path)
-    find_text_contour(img, 100)
+    
