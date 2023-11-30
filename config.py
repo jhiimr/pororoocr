@@ -1,9 +1,0 @@
-### CAM
-FRAME_WIDTH = 1920 #1280
-FRAME_HEIGHT = 1080
-
-### ROI
-PAD = 5
-
-### Seperator
-PARSER = chr(0)
