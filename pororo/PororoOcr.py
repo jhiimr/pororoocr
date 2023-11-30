@@ -1,7 +1,7 @@
 import cv2
 from pororo import Pororo
 from pororo.pororo import SUPPORTED_TASKS
-from plt_util import plt_imshow, put_text
+from pororo.plt_util import plt_imshow, put_text
 import warnings
 
 warnings.filterwarnings('ignore')
